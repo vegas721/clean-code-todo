@@ -9,7 +9,7 @@
 
 const taskInput = document.getElementById('new-task');
 const addButton = document.getElementsByTagName('button')[0];
-const incompleteTaskHolder = document.getElementById('incompleteTasks');
+const incompleteTaskHolder = document.getElementById('incomplete-tasks');
 const completedTasksHolder = document.getElementById('completed-tasks');
 
 const createCheckBoxTaskElement = function () {
@@ -85,7 +85,7 @@ const editTask = function () {
   const editInput = task.querySelector('input[type=text]');
   const label = task.querySelector('label');
   const editButton = task.querySelector('.edit');
-  const containsClass = task.classList.contains('editMode');
+  const containsClass = task.classList.contains('edit-mode');
 
   if (containsClass) {
     label.innerText = editInput.value;
@@ -95,7 +95,7 @@ const editTask = function () {
     editButton.innerText = 'Save';
   }
 
-  task.classList.toggle('editMode');
+  task.classList.toggle('edit-mode');
 };
 
 const deleteTask = function () {
