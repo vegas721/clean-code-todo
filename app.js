@@ -96,7 +96,6 @@ var taskIncomplete = function () {
   bindTaskEvents(listItem, taskCompleted);
 };
 
-addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
 
 var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
