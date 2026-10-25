@@ -50,50 +50,50 @@ var createNewTaskElement = function (taskString) {
 
 var addTask = function () {
   if (!taskInput.value) return;
-  var listItem = createNewTaskElement(taskInput.value);
+  var task = createNewTaskElement(taskInput.value);
 
-  incompleteTaskHolder.appendChild(listItem);
+  incompleteTaskHolder.appendChild(task);
   bindTaskEvents(listItem, taskCompleted);
 
   taskInput.value = '';
 };
 
 var editTask = function () {
-  var listItem = this.parentNode;
+  var task = this.parentNode;
 
-  var editInput = listItem.querySelector('input[type=text]');
-  var label = listItem.querySelector('label');
-  var editBtn = listItem.querySelector('.edit');
-  var containsClass = listItem.classList.contains('editMode');
+  var editInput = task.querySelector('input[type=text]');
+  var label = task.querySelector('label');
+  var editButton = task.querySelector('.edit');
+  var containsClass = task.classList.contains('editMode');
 
   if (containsClass) {
     label.innerText = editInput.value;
-    editBtn.innerText = 'Edit';
+    editButton.innerText = 'Edit';
   } else {
     editInput.value = label.innerText;
-    editBtn.innerText = 'Save';
+    editButton.innerText = 'Save';
   }
 
-  listItem.classList.toggle('editMode');
+  task.classList.toggle('editMode');
 };
 
 var deleteTask = function () {
-  var listItem = this.parentNode;
-  var ul = listItem.parentNode;
+  var task = this.parentNode;
+  var list = task.parentNode;
 
-  ul.removeChild(listItem);
+  list.removeChild(listItem);
 };
 
-var taskCompleted = function () {
-  var listItem = this.parentNode;
-  completedTasksHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskIncomplete);
+var completeTask = function () {
+  var task = this.parentNode;
+  completedTasksHolder.appendChild(task);
+  bindTaskEvents(task, incompleteTask);
 };
 
-var taskIncomplete = function () {
-  var listItem = this.parentNode;
-  incompleteTaskHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+var incompleteTask = function () {
+  var task = this.parentNode;
+  incompleteTaskHolder.appendChild(task);
+  bindTaskEvents(task, completeTask);
 };
 
 addButton.addEventListener('click', addTask);
@@ -111,11 +111,11 @@ var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
 };
 
 for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
-  bindTaskEvents(incompleteTaskHolder.children[i], taskCompleted);
+  bindTaskEvents(incompleteTaskHolder.children[i], completeTask);
 }
 
 for (let i = 0; i < completedTasksHolder.children.length; i++) {
-  bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
+  bindTaskEvents(completedTasksHolder.children[i], incompleteTask);
 }
 
 // Issues with usability don't get seen until they are in front of a human tester.
