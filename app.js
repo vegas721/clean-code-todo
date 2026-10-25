@@ -110,13 +110,22 @@ var bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   checkBox.onchange = checkBoxEventHandler;
 };
 
-for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
+function bindAllTasks(nameHolder, statusTask) {
+  for (let i = 0; i < nameHolder.children.length; i++) {
+    bindTaskEvents(nameHolder.children[i], statusTask);
+  }
+}
+
+bindAllTasks(incompleteTaskHolder, completeTask);
+bindAllTasks(completedTasksHolder, incompleteTask);
+
+/*for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
   bindTaskEvents(incompleteTaskHolder.children[i], completeTask);
 }
 
 for (let i = 0; i < completedTasksHolder.children.length; i++) {
   bindTaskEvents(completedTasksHolder.children[i], incompleteTask);
-}
+}*/
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
