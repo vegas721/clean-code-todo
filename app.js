@@ -14,15 +14,10 @@ var completedTasksHolder = document.getElementById('completed-tasks');
 
 var createNewTaskElement = function (taskString) {
   var listItem = document.createElement('li');
-
   var checkBox = document.createElement('input');
-
   var label = document.createElement('label');
-
   var editInput = document.createElement('input');
-
   var editButton = document.createElement('button');
-
   var deleteButton = document.createElement('button');
   var deleteButtonImg = document.createElement('img');
 
@@ -53,14 +48,13 @@ var addTask = function () {
   var task = createNewTaskElement(taskInput.value);
 
   incompleteTaskHolder.appendChild(task);
-  bindTaskEvents(listItem, taskCompleted);
+  bindTaskEvents(task, taskCompleted);
 
   taskInput.value = '';
 };
 
 var editTask = function () {
   var task = this.parentNode;
-
   var editInput = task.querySelector('input[type=text]');
   var label = task.querySelector('label');
   var editButton = task.querySelector('.edit');
@@ -118,14 +112,6 @@ function bindAllTasks(nameHolder, statusTask) {
 
 bindAllTasks(incompleteTaskHolder, completeTask);
 bindAllTasks(completedTasksHolder, incompleteTask);
-
-/*for (var i = 0; i < incompleteTaskHolder.children.length; i++) {
-  bindTaskEvents(incompleteTaskHolder.children[i], completeTask);
-}
-
-for (let i = 0; i < completedTasksHolder.children.length; i++) {
-  bindTaskEvents(completedTasksHolder.children[i], incompleteTask);
-}*/
 
 // Issues with usability don't get seen until they are in front of a human tester.
 
