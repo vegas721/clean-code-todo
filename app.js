@@ -12,35 +12,62 @@ const addButton = document.getElementsByTagName('button')[0];
 const incompleteTaskHolder = document.getElementById('incompleteTasks');
 const completedTasksHolder = document.getElementById('completed-tasks');
 
-const createNewTaskElement = function (taskString) {
-  const listItem = document.createElement('li');
+const createCheckBoxTaskElement = function () {
   const checkBox = document.createElement('input');
-  const label = document.createElement('label');
-  const editInput = document.createElement('input');
-  const editButton = document.createElement('button');
-  const deleteButton = document.createElement('button');
-  const deleteButtonImg = document.createElement('img');
-
-  label.innerText = taskString;
-  label.className = 'task';
 
   checkBox.type = 'checkbox';
-  editInput.type = 'text';
-  editInput.className = 'task';
 
-  editButton.innerText = 'Edit';
-  editButton.className = 'edit';
+  return checkBox;
+};
 
-  deleteButton.className = 'delete';
-  deleteButtonImg.src = './remove.svg';
-  deleteButton.appendChild(deleteButtonImg);
+const createLabelTaskElement = function (text) {
+  const label = document.createElement('label');
 
-  listItem.appendChild(checkBox);
-  listItem.appendChild(label);
-  listItem.appendChild(editInput);
-  listItem.appendChild(editButton);
-  listItem.appendChild(deleteButton);
-  return listItem;
+  label.innerText = text;
+  label.className = 'task';
+
+  return label;
+};
+
+const createEditInputTaskElement = function () {
+  const input = document.createElement('input');
+
+  input.type = 'text';
+  input.className = 'task';
+
+  return input;
+};
+
+const createEditButtonTaskElement = function () {
+  const button = document.createElement('button');
+
+  button.innerText = 'Edit';
+  button.className = 'edit';
+
+  return button;
+};
+
+const createDeleteButtonTaskElement = function () {
+  const button = document.createElement('button');
+  const buttonImg = document.createElement('img');
+
+  button.className = 'delete';
+  buttonImg.src = './remove.svg';
+  button.appendChild(buttonImg);
+
+  return button;
+};
+
+const createNewTaskElement = function (taskString) {
+  const task = document.createElement('li');
+
+  task.appendChild(createCheckBoxTaskElement());
+  task.appendChild(createLabelTaskElement(taskString));
+  task.appendChild(createEditInputTaskElement());
+  task.appendChild(createEditButtonTaskElement());
+  task.appendChild(createDeleteButtonTaskElement());
+
+  return task;
 };
 
 const addTask = function () {
@@ -48,7 +75,7 @@ const addTask = function () {
   const task = createNewTaskElement(taskInput.value);
 
   incompleteTaskHolder.appendChild(task);
-  bindTaskEvents(task, taskCompleted);
+  bindTaskEvents(task, completeTask);
 
   taskInput.value = '';
 };
