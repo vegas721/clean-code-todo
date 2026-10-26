@@ -15,6 +15,7 @@ export default defineConfig([
     plugins: { js },
     extends: ['js/recommended'],
     rules: {
+      'no-var': 'error',
       'no-unused-vars': 'error',
       'prefer-const': ['error', { ignoreReadBeforeAssign: true }],
       'no-console': 'error',
