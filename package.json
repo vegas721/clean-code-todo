@@ -12,14 +12,9 @@
     "prepare": "husky"
   },
   "lint-staged": {
-        "*.js": [
-            "eslint",
-            "prettier --write"
-        ],
-        "*.{html,css,md}": [
-            "prettier --write"
-        ]
-    },
+    "**/*.{js,ts,jsx,tsx,json,css,md}": ["eslint",
+      "prettier --write"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vegas721/clean-code-todo.git"
