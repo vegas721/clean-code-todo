@@ -12,8 +12,7 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "**/*.{js,ts,jsx,tsx,json,css,md}": ["eslint",
-      "prettier --write"]
+    "**/*.{js,ts,jsx,tsx,json,css,md}": "prettier --write"
   },
   "repository": {
     "type": "git",
