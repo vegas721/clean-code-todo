@@ -17,7 +17,7 @@
             "prettier --check"
         ],
         "*.{html,css,md}": [
-            "prettier --check"
+            "prettier --write"
         ]
     },
   "repository": {
